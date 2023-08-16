@@ -3,7 +3,7 @@
     $mysql_settings = array(
         'server' => "localhost",
         "user" => "root",
-        "password" => "",
+        "password" => "root",
         "db" => "vir_countries"
     );
 

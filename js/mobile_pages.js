@@ -1,17 +1,17 @@
 window.onload = function() {
 	
-	var mb_button = document.getElementById("mobile_links");
-	var links_element = document.getElementById("mobile_links_block");
-	var links_shadow_element = document.getElementById("mobile_links_block_shadow");
+	let mobile_links_button = document.getElementById("mobile_links");
+	let mobile_links_block = document.getElementById("mobile_links_block");
+	let mobile_links_block_shadow = document.getElementById("mobile_links_block_shadow");
 	
-	mb_button.onclick = function() {
-		links_element.style.display = "block";
-		links_shadow_element.style.display = "block";
+	mobile_links_button.onclick = function() {
+		mobile_links_block.style.display = "block";
+		mobile_links_block_shadow.style.display = "block";
 	};
 	
-	links_shadow_element.onclick = function() {
-		links_element.style.display = "none";
-		links_shadow_element.style.display = "none";
+	mobile_links_block_shadow.onclick = function() {
+		mobile_links_block.style.display = "none";
+		mobile_links_block_shadow.style.display = "none";
 	};
 	
 };
