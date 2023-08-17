@@ -1,22 +1,25 @@
 let map;
+let countries_list;
 
 function MapInit() {
     if (this.status == 200 && this.responseText != null) {
 		let get_map = this.responseText;
-		let countries_list = JSON.parse(get_map);
+
+		countries_list = JSON.parse(get_map);
 	
 		let i = 0;
 	
 		while (countries_list[i]) {
-	
-			let geo = DG.geoJson(JSON.parse(countries_list[i].geojson), {
-				style: function() {
-					return {
-						color: countries_list[i].color
-					};
+
+			L.geoJSON(JSON.parse(countries_list[i].geojson), {
+				style: function () {
+					return {color: countries_list[i].color};
 				}
+			}).bindPopup(function (layer) {
+
+				return layer.feature.properties.name;
 			}).addTo(map);
-			geo.bindPopup(countries_list[i].name);
+
 			i++;
 	
 		}
@@ -25,18 +28,16 @@ function MapInit() {
 
 window.onload = function() {
 
-	DG.then(function() {
-		map = DG.map('map', {
-			center: [49.24, 17.94],
-			zoom: 5,
-			projectDetector: false,
-			poi: false
-		});
+	map = L.map('map').setView([49.24, 17.94], 5);
+
+	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '© OpenStreetMap'
+	}).addTo(map);
 		
-		let get_map = new XMLHttpRequest();
-		get_map.onload = MapInit;
-		get_map.open("GET", "../map.json");
-		get_map.send();
-	});
+	let get_map = new XMLHttpRequest();
+	get_map.onload = MapInit;
+	get_map.open("GET", "../map.json");
+	get_map.send();
 
 }
