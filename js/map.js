@@ -11,7 +11,7 @@ function MapInit() {
 	
 		while (countries_list[i]) {
 
-			L.geoJSON(JSON.parse(countries_list[i].geojson), {
+			L.geoJSON(JSON.parse(fetch(`../geo/${countries_list[i].id}.geojson`)), {
 				style: function () {
 					return {color: countries_list[i].color};
 				}
@@ -28,11 +28,11 @@ function MapInit() {
 
 window.onload = function() {
 
-	map = L.map('map').setView([49.24, 17.94], 5);
+	map = L.map("map").setView([49.24, 17.94], 5);
 
-	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 		maxZoom: 19,
-		attribution: '© OpenStreetMap'
+		attribution: "© OpenStreetMap"
 	}).addTo(map);
 		
 	let get_map = new XMLHttpRequest();
