@@ -11,7 +11,7 @@ function MapInit() {
 	
 		while (countries_list[i]) {
 
-			L.geoJSON(JSON.parse(fetch(`../geo/${countries_list[i].id}.geojson`)), {
+			L.geoJSON(fetch(`../geo/${countries_list[i].id}.geojson`).then(response => response.json()), {
 				style: function () {
 					return {color: countries_list[i].color};
 				}
