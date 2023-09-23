@@ -11,6 +11,7 @@ function MapInit() {
 
 				while (i < countries_list.length) {
 						let countryId = countries_list[i].id;
+						let countryName = countries_list[i].name;
 						let countryColor = countries_list[i].color;
 						
 						fetch(`../geo/${countryId}.geojson`)
@@ -26,8 +27,8 @@ function MapInit() {
 												style: function () {
 														return { color: countryColor };
 												}
-										}).bindPopup(function (layer) {
-												return layer.feature.properties.name;
+										}).bindPopup(function () {
+												return countryName;
 										}).addTo(map);
 								})
 								.catch(error => {
